@@ -15,7 +15,7 @@ export class UserController {
 
         return {
             status: 200,
-            message: "OK",
+            message: "User created successfully",
             data: {
                 success: true
             }
