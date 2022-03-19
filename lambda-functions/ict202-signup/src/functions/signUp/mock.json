@@ -1,0 +1,10 @@
+{
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "email": "alfed.alinan@email.com",
+    "password": "testpassword",
+    "access": ["records", "others"]
+  }
+}
