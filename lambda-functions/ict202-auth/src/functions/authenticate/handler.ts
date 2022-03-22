@@ -15,10 +15,8 @@ const authenticate: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (e
   
   let controller: UserController = containers.resolve("UserController");
   let response: BaseResponse = await controller.authenticate(request);
-  
-  let data: any = response.data != null ? response.data : {};
 
-  return formatJSONResponse(data);
+  return formatJSONResponse(<any>response);
 };
 
 export const main = middyfy(authenticate);
