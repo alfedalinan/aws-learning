@@ -17,10 +17,7 @@ const signUp: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) 
 
   let result: BaseResponse = await controller.create(request);
 
-  return formatJSONResponse({
-    message: result.message,
-    success: result.data.success    
-  });
+  return formatJSONResponse(<any>result);
 };
 
 export const main = middyfy(signUp);
