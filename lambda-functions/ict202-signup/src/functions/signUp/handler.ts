@@ -9,7 +9,7 @@ import { middyfy } from '@libs/lambda';
 import schema from './schema';
 
 const signUp: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
-  
+  console.log(event);
   let controller: UserController = containers.resolve("UserController");
   let request: BaseRequest = {
     body: event.body

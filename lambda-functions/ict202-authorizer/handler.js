@@ -29,7 +29,7 @@ module.exports.authorizer = async (event, context, callback) => {
   return {
     statusCode: response.status,
     headers: {
-      "Access-Control-Allow-Headers" : "Content-Type,Authorization",
+      "Access-Control-Allow-Headers" : "Content-Type,Authorization,authorizationToken",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
     },

@@ -8,7 +8,7 @@ export const formatJSONResponse = (response: Record<string, unknown>) => {
   return {
     statusCode: <number>response.status,
     headers: {
-      "Access-Control-Allow-Headers" : "Content-Type,Authorization",
+      "Access-Control-Allow-Headers" : "Content-Type,Authorization,authorizationToken",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
     },
