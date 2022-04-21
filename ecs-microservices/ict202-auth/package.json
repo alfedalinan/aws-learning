@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha -r ts-node/register test/index.spec.ts",
-    "dev": "ts-node-dev index.ts",
-    "start": "ts-node"
+    "dev": "NODE_ENV=dev ts-node-dev index.ts",
+    "start-ts": "NODE_ENV=dev ts-node",
+    "start-dev": "NODE_ENV=dev node build/index.js",
+    "start-prod": "NODE_ENV=prod node build/index.js"
   },
   "engines": {
     "node": ">=14.15.0"

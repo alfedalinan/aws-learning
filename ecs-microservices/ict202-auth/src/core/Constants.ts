@@ -8,5 +8,5 @@ export const status = {
 }
 
 export const server = {
-    PORT: 3231
+    PORT: 3232
 }

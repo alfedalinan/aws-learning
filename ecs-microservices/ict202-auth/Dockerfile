@@ -4,6 +4,7 @@ WORKDIR /srv
 ADD . .
 RUN npm install typescript -g && npm install
 COPY . .
-RUN tsc
-EXPOSE 3231
-CMD ["node", "build/index.js"]
+RUN tsc && cp .env build/ && cp .env.dev build/
+RUN cd build/
+EXPOSE 3232
+CMD ["npm", "run", "start-prod"]

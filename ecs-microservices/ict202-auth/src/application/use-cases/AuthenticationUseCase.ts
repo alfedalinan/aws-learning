@@ -5,7 +5,7 @@ import { IUserRepository } from "../../core/interfaces/IUserRepository";
 import { inject, injectable } from "tsyringe";
 import { sign } from "jsonwebtoken";
 import { AES, enc } from "crypto-js";
-import { expiry, secrets, keys } from "../../framework/configs/Constants";
+import { configSet } from "../../framework/utils/Loader"
 
 @injectable()
 export class AuthenticationUseCase implements IAuthenticationUseCase {
@@ -18,15 +18,15 @@ export class AuthenticationUseCase implements IAuthenticationUseCase {
         
         let tokenDetails: TokenDetails = null;
 
-        password = AES.decrypt(password.split(":")[1], keys.encryption).toString(enc.Utf8);
+        password = AES.decrypt(password.split(":")[1], configSet.ENCRYPTION_KEY).toString(enc.Utf8);
         let repoResult: User = await this.userRepository.readOne(email, password);
 
         if (repoResult != null) {
-            let accessToken: string = await sign({ firstName: repoResult.firstName, lastName: repoResult.lastName, email: repoResult.email, access: JSON.parse(repoResult.access) }, secrets.app, { expiresIn: expiry.access });
+            let accessToken: string = await sign({ firstName: repoResult.firstName, lastName: repoResult.lastName, email: repoResult.email, access: JSON.parse(repoResult.access) }, configSet.APP_SECRET, { expiresIn: parseInt(configSet.ACCESS_EXPIRY) });
             
             tokenDetails = {
                 accessToken: accessToken,
-                expiresIn: expiry.access
+                expiresIn: parseInt(configSet.ACCESS_EXPIRY)
             }
         }
 
