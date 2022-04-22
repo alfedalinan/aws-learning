@@ -22,14 +22,24 @@ export class UserController {
 
             let tokens: TokenDetails = await this.authUseCase.authenticate(email, password);
 
-            return {
-                status: tokens != null ? status.OK : status.UNAUTHORIZED,
-                message: tokens != null ? "OK" : "Unauthorized",
-                data: tokens
-            };
+            if (tokens != null) {
+                return {
+                    status: status.OK ,
+                    message: "OK",
+                    data: tokens
+                };
+            }
+            else {
+
+                return {
+                    status: status.UNAUTHORIZED ,
+                    message: "Unauthorized",
+                    data: tokens
+                };
+            }
 
         } catch (error) {
-            return {
+            throw {
                 status: status.INTERNAL_SERVER_ERROR,
                 message: "An error has occured",
                 data: JSON.stringify(error)
